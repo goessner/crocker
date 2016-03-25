@@ -8,12 +8,15 @@ For general fourbar mechanisms see [fourbar](https://github.com/goessner/fourbar
 
 ## Geometry
 
+A *Crank-Rocker* is a specific *fourbar* mechanism. It is composed of four binary links that are connected to each other 
+with revolute joints. These links are called *crank*, *coupler*, *rocker* and *frame*. Their lengths are 
+named <code>a, b, c, d</code> respectively.
+
 ![Extreme positions](img/extremepositions.png)
 
 The input *crank* is fully rotatable and performs a complete 360° turn. At the same time the *rocker* oscillates 
 between its extreme positions <code>ψ_min</code> and <code>ψ_max</code>. Both *crank* and *rocker* are connected to 
-the *fixed frame* by pivots. The *coupler* functions as a *connecting rod* between that two. The length of the four links are 
-named <code>a, b, c, d</code> respectively.
+the *fixed frame* by pivots. The *coupler* functions as a *connecting rod* between that two. 
 
 ![Extreme positions 2](img/extremepositions2.png)
 

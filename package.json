@@ -1,0 +1,36 @@
+{
+  "name": "crocker",
+  "version": "0.8.0",
+  "description": "crocker - a Crank-Rocker design and analysis library",
+  "keywords": [
+    "crank-rocker",
+    "rocker-crank",
+    "fourbar",
+    "mechanism",
+    "linkage",
+    "planar",
+    "4R",
+    "analysis",
+    "synthesis",
+    "design"
+  ],
+  "main": "crocker.js",
+  "scripts": {
+    "jsdoc": "jsdoc2md ./crocker.js > ./api.md",
+    "test": "node ./tests/tests.js",
+    "minify": "uglifyjs --comments -o ./crocker.min.js ./crocker.js",
+    "gzip": "7z -tgzip a ./crocker.min.js.gz ./crocker.min.js"
+  },
+  "author": "Stefan Goessner <fang03@web.de>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/goessner/crocker.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "concat": "^1.0.0",
+    "jsdoc-to-markdown": "^1.3.2",
+    "jslint": "^0.9.5",
+    "uglifyjs": "^2.4.10"
+  }
+}

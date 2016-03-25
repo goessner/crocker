@@ -9,7 +9,7 @@ For general fourbar mechanisms see [fourbar](https://github.com/goessner/fourbar
 ## Geometry
 
 A *Crank-Rocker* is a specific *fourbar* mechanism. It is composed of four binary links that are connected to each other 
-with revolute joints. These links are called *crank*, *coupler*, *rocker* and *frame*. Their lengths are 
+by revolute joints. These links are called *crank*, *coupler*, *rocker* and *frame*. Their lengths are 
 named <code>a, b, c, d</code> respectively.
 
 ![Extreme positions](img/extremepositions.png)
@@ -138,7 +138,7 @@ function toDeg(w) { return w*180/Math.PI; }
 var Crocker = require("./crocker.js").Crocker;
 
 // Design a Crank-Rocker with 
-// * Given length
+// * Given frame length
 // * Rocker's angular range of 80°
 // * A forth and back ratio of 10/9
 // Find the optimal Crank-Rocker with maximum of minimal transmission angle.
@@ -177,4 +177,4 @@ All notable changes to this project will be documented in this file. This projec
 
 ## 0.8.0 - 2016-03-25
 
-### Transferred to Github
+### First Commit to Github

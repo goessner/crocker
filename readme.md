@@ -1,9 +1,9 @@
 # Crank-Rocker
 
-<code>Crocker</code> is a javascript namespace and function library, which has proven successful in designing and analysing Crank-Rockers 
+<code>Crocker</code> is a javascript namespace and function library, which has proven successful in designing and analyzing Crank-Rockers 
 as special planar fourbar mechanisms. <code>Crocker.js</code> is tiny, it weights only 1.5 kB compressed and gzipped.
 
-For general fourbar mechanisms see [fourbar](https://github.com/goessner/fourbar).
+<code>Crocker</code> is *not* meant to simulate mechanisms. For this and general fourbar mechanisms see [fourbar](https://github.com/goessner/fourbar).
 
 
 ## Geometry
@@ -173,7 +173,7 @@ See the [API Reference](./api.md) for details.
 
 #Change Log
 
-All notable changes to this project will be documented in this file. This project adheres to Semantic Versioning.
+All notable changes to this project will be documented here. This project adheres to Semantic Versioning.
 
 ## 0.8.0 - 2016-03-25
 

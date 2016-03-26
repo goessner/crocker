@@ -47,7 +47,7 @@ Please note, that - as a convention - the transmission angle is always considere
 <code>μ</code> happens to be greater than 90°, its supplement angle (<code>180° - μ</code>) should be taken instead.
 
 Ideally the transmission angle is always 90°, which isn't possible of course. So a specific design goal with crank-rockers
-is to *maximize* the minimal transmission angle. A valuable optimization method regarding this can be done with <code>crocker.js</code>.
+is to *maximize* the minimal transmission angle. A valuable optimization method regarding this can be applied with <code>crocker.js</code>.
 
 See [[1]](#fn1), [[2]](#fn2) or [[3]](#fn3) for further details.
 

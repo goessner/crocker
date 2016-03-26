@@ -31,8 +31,8 @@ directly relates to <code>α</code>. The other important design parameter of cou
 angular range <code>ψ_0</code>.
 
 As the four link lengths <code>a, b, c, d</code> sufficiently define a specific crank-rocker and <code>α</code> and <code>ψ_0</code> 
-are added as important design parameters, there must be some relationship between those now *six* parameters. It can be shown
-that these relations hold:
+are added as important design parameters, there must be two relations between those now *six* parameters. It can be shown
+that these relations are:
 
 ![Relations](img/relations.png)
 
@@ -42,18 +42,18 @@ times while the crank performs a complete rotation.
 
 ![Transmission Angles](img/transmissionangles.png)
 
-So the minimal transmission angle <code>μ_min</code> has to be calculated as  <code>min(μ_inner,μ_outer)</code>.
+So the minimal transmission angle <code>μ_min</code> has to be calculated as <code>min(μ_inner,μ_outer)</code>.
 Please note, that - as a convention - the transmission angle is always considered to be in the range <code>0 < μ <= 90°</code>. So in case
-<code>μ</code> happens to be greater than 90°, its supplement angle <code>180° - μ</code> should be taken instead.
+<code>μ</code> happens to be greater than 90°, its supplement angle (<code>180° - μ</code>) should be taken instead.
 
 Ideally the transmission angle is always 90°, which isn't possible of course. So a specific design goal with crank-rockers
-is to *maximize* the minimal transmission angle. An valuable optimization method regarding that is supported with <code>crocker</code>.
+is to *maximize* the minimal transmission angle. A valuable optimization method regarding this can be done with <code>crocker.js</code>.
 
 See [[1]](#fn1), [[2]](#fn2) or [[3]](#fn3) for further details.
 
 ## Implementation
 
-The <code>crocker</code> library consists mostly of small functions. It is no <code>class</code>, as you cannot
+The <code>crocker</code> library consists mostly of small functions. It is no <code>class</code>, so you cannot
 instantiate any Crank-Rocker objects.
 
 The most simple way to use the <code>crocker</code> library is with <code>node.js</code>.
@@ -64,19 +64,19 @@ The most simple way to use the <code>crocker</code> library is with <code>node.j
 function toRad(w) { return w/180*Math.PI; }
 function toDeg(w) { return w*180/Math.PI; }
 
-var Crocker = require("./crocker.js").Crocker;
+var crocker = require("../crocker.js");
 
 // Design a Crank-Rocker with 
 // * Given crank and frame length
 // * Rocker's angular range of 80°
-// * A forth and back time ratio of 10/9
+// * A forth and back ratio of 10/9
 var a = 60,
     d = 120,
     psi0 = toRad(80),
-    alfa = Crocker.alfa_tfb(10/9),
-    b = Crocker.b_ad(a,d,alfa,psi0),
-    c = Crocker.c_ad(a,d,alfa,psi0),
-    muMin = Crocker.muMin(a,b,c,d);
+    alfa = crocker.alfa_tfb(10/9),
+    b = crocker.b_ad(a,d,alfa,psi0),
+    c = crocker.c_ad(a,d,alfa,psi0),
+    muMin = crocker.muMin(a,b,c,d);
 
 console.log("psi0 = " + toDeg(psi0));   // 80°
 console.log("alfa = " + toDeg(alfa));   // 9.5°
@@ -85,7 +85,16 @@ console.log("c = " + c);                //  94
 console.log("muMin = " + toDeg(muMin)); // 35°
 ```
 
-Here is a table of <code>Crocker</code> functions.
+Here is a table of <code>Crocker</code> functions. Please note that these functions are only loosely coupled. Usually the validity 
+of the parameter set handed over to them is checked in the context, from where they are invoked. So please ensure to use valid
+parameters, as 
+
+* <code>a,b,c,d</code> are Grashof positive.
+* <code>a</code> is the smallest link length.
+* <code>ψ_0</code> is smaller than 180°.
+* All angles are provided in radians.
+
+just to name a few.
 
 | Function | Comment |
 | --- | --- | --- |
@@ -157,6 +166,9 @@ console.log("b = " + b);                // 116
 console.log("c = " + c);                // 73.9
 console.log("muMin = " + toDeg(muMin)); // 37.7°
 ```
+
+Here is a [graphics example](https://goessner.github.io/crocker/Examples/crockerdraw.html) using `crocker.js`.
+
 
 ## References
 

@@ -2,87 +2,82 @@
 <html>
 <head>
   <meta charset='utf-8'>
-  <title>4bar</title>
+  <title>Crank-Rocker</title>
   <style> canvas { border: 1px solid #000; } </style>
-  <script src='../g2/dist/g2.js'></script>
-  <script src='../g2-mec/src/g2.mec.js'></script>
-  <script src='fourbar.js'></script>
+  <script src='../../g2/dist/g2.js'></script>
+  <script src='../../g2-mec/dist/g2.mec.js'></script>
+  <script src='../crocker.js'></script>
 </head>
 
 <body>
   <h1>Draw Crank-Rocker</h1>
   <div id="app">
-    <canvas id="c" width="400", height="300"></canvas><br>
+    <canvas id="c" width="750", height="250"></canvas><br>
   </div>
   <script>
+function sqr(x) { return x*x; }
 var app = {
-   crdata: { a:100, b:200, c:200, d:100 },
-   cr: null,
-   ctx: document.getElementById("c").getContext("2d"),
-   g: g2(),
-   bg:  g2(),
-   fbg: g2(),
-   dirty: true,
-   go: false,
-
-   init: function() {
-      this.fb = Fourbar.create(this.fbdata).compile().calc();
-      document.getElementById("h").innerHTML = this.fb.typestr();
-      document.getElementById("stopgo").onclick = this.stopgo.bind(this);
-      this.renderHdl = this.render.bind(this);
-      this.fb.onCycle(this.cycleHdl = this.cycle.bind(this));
-      this.fbg
-          .cartesian()
-          .clr()
-          .pan(200,200)
-          .style({sh:[5,5,5,"#888"]})
-          .use(this.mov)
-          .use(this.bg);
-      this.render();
+   a:25, b:100, c:100, d:100,
+   outerExtremePosition: function(g) {
+      var phimin = Crocker.phiMin(this.a,this.b,this.c,this.d),
+          psimin = Crocker.psiMin(this.a,this.b,this.c,this.d);
+      return g.cartesian()
+              .bar({x:0,y:0},{x:(this.a+this.b)*Math.cos(phimin),y:(this.a+this.b)*Math.sin(phimin)})
+              .bar({x:this.d,y:0},{x:this.c*Math.cos(psimin),y:this.c*Math.sin(psimin)})
+              .use("nod",{x:this.a*Math.cos(phimin),y:this.a*Math.sin(phimin)})
+              .use("nod",{x:this.d+this.c*Math.cos(psimin),y:this.c*Math.sin(psimin)})
+              .use("nodfix",{x:0,y:0})
+              .use("nodfix",{x:this.d,y:0})
+              .txt("outer extreme position",this.d/2,-this.a-20,0,{thal:"center"});
    },
-   stopgo: function() {
-      this.go = !this.go;
-      document.getElementById("stopgo").innerHTML = this.go ? "stop" : "run";
-      if (this.go) this.render();
+   innerExtremePosition: function(g) {
+      var phimax = Crocker.phiMax(this.a,this.b,this.c,this.d),
+          psimax = Crocker.psiMax(this.a,this.b,this.c,this.d);
+      return g.cartesian()
+              .bar({x:this.a*Math.cos(phimax),y:this.a*Math.sin(phimax)},{x:-this.b*Math.cos(phimax),y:-this.b*Math.sin(phimax)})
+              .bar({x:this.d,y:0},{x:this.c*Math.cos(psimax),y:this.c*Math.sin(psimax)})
+              .use("nod",{x:this.a*Math.cos(phimax),y:this.a*Math.sin(phimax)})
+              .use("nod",{x:this.d+this.c*Math.cos(psimax),y:this.c*Math.sin(psimax)})
+              .use("nodfix",{x:0,y:0})
+              .use("nodfix",{x:this.d,y:0})
+              .txt("inner extreme position",this.d/2,-this.a-20,0,{thal:"center"});
    },
-   cycleHdl: null,
-   cycle: function(cyc) {
-      if (cyc.cnt === 0) {
-         if (cyc.state === "beg")
-            this.curve = [];
-      }
-      else {
-         console.log("state:"+cyc.state+", cnt:"+cyc.cnt);
-         this.fb.onCycle(this.cycleHdl);  // remove handler ...
-      }
+   innerTransmissionAngle: function(g) {
+      var phiI = Math.acos(( sqr(this.b)+sqr(this.d-this.a)-sqr(this.c))/(2*this.b*(this.d-this.a))),
+          psiI = Math.acos((-sqr(this.c)-sqr(this.d-this.a)+sqr(this.b))/(2*this.c*(this.d-this.a)));
+      return g.cartesian()
+              .bar({x:0,y:0},{x:this.a,y:0})
+              .bar({x:this.a,y:0},{x:this.b*Math.cos(phiI),y:this.b*Math.sin(phiI)})
+              .bar({x:this.d,y:0},{x:this.c*Math.cos(psiI),y:this.c*Math.sin(psiI)})
+              .use("nod",{x:this.a,y:0})
+              .use("nod",{x:this.d+this.c*Math.cos(psiI),y:this.c*Math.sin(psiI)})
+              .use("nodfix",{x:0,y:0})
+              .use("nodfix",{x:this.d,y:0})
+              .txt("inner transmission angle",this.d/2,-this.a-20,0,{thal:"center"});
    },
-   renderHdl: null,
+   outerTransmissionAngle: function(g) {
+      var phiO = Math.acos(( sqr(this.b)+sqr(this.d+this.a)-sqr(this.c))/(2*this.b*(this.d+this.a))),
+          psiO = Math.acos((-sqr(this.c)-sqr(this.d+this.a)+sqr(this.b))/(2*this.c*(this.d+this.a)));
+      return g.cartesian()
+              .bar({x:0,y:0},{x:-this.a,y:0})
+              .bar({x:-this.a,y:0},{x:this.b*Math.cos(phiO),y:this.b*Math.sin(phiO)})
+              .bar({x:this.d,y:0},{x:this.c*Math.cos(psiO),y:this.c*Math.sin(psiO)})
+              .use("nod",{x:-this.a,y:0})
+              .use("nod",{x:this.d+this.c*Math.cos(psiO),y:this.c*Math.sin(psiO)})
+              .use("nodfix",{x:0,y:0})
+              .use("nodfix",{x:this.d,y:0})
+              .txt("outer transmission angle",this.d/2,-this.a-20,0,{thal:"center"});
+   },
    render: function() {
-      var fb = this.fb;
-      if (this.dirty) {
-         this.bg.del()
-             .use("nodfix",fb.A0)
-             .use("nodfix",fb.B0);
-         this.dirty = false;
-      }
-      fb.step().calc();
-      if (this.fb.cycle.cnt === 0 && this.curve) {
-         this.curve.push(fb.C.x,fb.C.y);
-//         console.log("!");
-      }
-      this.mov.del()
-         .ply(this.curve,true,{ls:"#888",lw:2,fs:"orange"})
-         .bar(fb.A0,{x:fb.A.x-fb.A0.x,y:fb.A.y-fb.A0.y},fb.calc === Fourbar.prototype.calcCrankRocker ? {fs:"green"} : null)
-         .bar(fb.A,{x:fb.B.x-fb.A.x,y:fb.B.y-fb.A.y})
-         .bar(fb.B0,{x:fb.B.x-fb.B0.x,y:fb.B.y-fb.B0.y},fb.calc === Fourbar.prototype.calcRockerCrank ? {fs:"green"} : null)
-         .use("nod",fb.A)
-         .use("nod",fb.B)
-         .use("nod",fb.C);
-      this.fbg.exe(this.ctx);
-      if (this.go) requestAnimationFrame(this.renderHdl);
+      g2().cartesian()
+          .use(this.outerExtremePosition(g2()),{x: 2*this.a,y:100})
+          .use(this.innerExtremePosition(g2()),{x:4*this.a+1*this.d,y:100})
+          .use(this.innerTransmissionAngle(g2()),{x:6*this.a+2*this.d,y:100})
+          .use(this.outerTransmissionAngle(g2()),{x:8*this.a+3*this.d,y:100})
+          .exe(document.getElementById("c").getContext("2d"));
    }
 }
-app.init();
+app.render();
   </script>
 </body>
 </html>

@@ -127,7 +127,7 @@ var Crocker = {
     },
    /**
     * Crank angle range difference `α`.<br>
-    * Note: Always returning positive value.
+    * Important Note: Always returns absolute value .. which might not be, what you want !!
     * @param {float} a Crank length
     * @param {float} b Coupler length
     * @param {float} c Rocker length
@@ -139,7 +139,6 @@ var Crocker = {
     },
    /**
     * Crank angle range difference `α`.<br>
-    * Note: Always returning positive value.
     * @param {float} a Crank length
     * @param {float} b Coupler length
     * @param {float} d Frame length
@@ -152,6 +151,7 @@ var Crocker = {
    /**
     * Crank angle range difference `α`.<br>
     * Note: Newton/Raphson numerical approximation.
+    * Bug: Currently false values sometimes .. to be fixed !!
     * @param {float} a Crank length
     * @param {float} b Coupler length
     * @param {float} d Frame length
@@ -163,7 +163,7 @@ var Crocker = {
          return 0;
       else {
          var f = function f(alf) {
-                    console.log("alf:"+alf+",a="+a+",c="+c+",d="+d+",ps0="+ps0)
+//                    console.log("alf:"+alf+",a="+a+",c="+c+",d="+d+",ps0="+ps0)
                     return a*a*Math.sin(ps0/2-alf) - c*c*Crocker.sqr(Math.sin(ps0/2-alf/2))*Math.sin(ps0/2) + d*d*Crocker.sqr(Math.sin(alf/2))*Math.sin(ps0/2);
                  },
              fd = function fd(alf) {
@@ -182,15 +182,15 @@ var Crocker = {
     * @returns {float} Crank angle range difference in radians.
     */
    alfa_bcd: function(b,c,d,ps0) {
-      function f(b,c,d,alf,ps0) {
+      function f(alf) {
          return b*b*Math.sin(ps0/2-alf) + c*c*Crocker.sqr(Math.cos(ps0/2-alf/2))*Math.sin(ps0/2) - d*d*Crocker.sqr(Math.cos(alf/2))*Math.sin(ps0/2);
       }
-      function fd(b,c,d,alf,ps0) {
+      function fd(alf) {
          return -b*b*Math.cos(ps0/2-alf) + c*c*Math.sin(ps0/2-alf/2)*Math.cos(ps0/2-alf/2)*Math.sin(ps0/2) + d*d*Math.sin(alf/2)*Math.cos(alf/2);
       }
       return Crocker.newton(f.bind(null),fd.bind(null),0,30);
     },
-    
+
    /**
     * Rocker angle range `ψ0`.<br>
     * Schwingwinkelbereich<br>
@@ -500,5 +500,4 @@ var Crocker = {
 };
 
 // export to Node.js
-if (typeof(module) !== "undefined" && module.exports)
-   module.exports.Crocker = Crocker;
+if (typeof module !== 'undefined') module.exports = Crocker;

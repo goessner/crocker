@@ -1,6 +1,6 @@
 {
   "name": "crocker",
-  "version": "0.8.0",
+  "version": "0.8.2",
   "description": "crocker - a Crank-Rocker design and analysis library",
   "keywords": [
     "crank-rocker",
@@ -17,7 +17,7 @@
   "main": "crocker.js",
   "scripts": {
     "jsdoc": "jsdoc2md ./crocker.js > ./api.md",
-    "test": "node ./tests/tests.js",
+    "tests": "node ./tests/tests.js",
     "minify": "uglifyjs --comments -o ./crocker.min.js ./crocker.js",
     "gzip": "7z -tgzip a ./crocker.min.js.gz ./crocker.min.js"
   },

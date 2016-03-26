@@ -167,7 +167,7 @@ console.log("c = " + c);                // 73.9
 console.log("muMin = " + toDeg(muMin)); // 37.7°
 ```
 
-Here is a [graphics example](https://goessner.github.io/crocker/Examples/crockerdraw.html) using `crocker.js`.
+Here is a [graphics example](https://goessner.github.io/crocker/Examples/crockerdraw.html) using `crocker.js` and [g2](https://github.com/goessner/g2).
 
 
 ## References

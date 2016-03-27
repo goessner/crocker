@@ -177,7 +177,7 @@ Crank angle range difference `α`.<br>
 
 <a name="Crocker.alfa_abc"></a>
 ### Crocker.alfa_abc(a, b, c, ps0) ⇒ <code>float</code>
-Crank angle range difference `α`.<br>Note: Always returning positive value.
+Crank angle range difference `α`.<br>Important Note: Always returns absolute value .. which might not be, what you want !!
 
 **Kind**: static method of <code>[Crocker](#Crocker)</code>  
 **Returns**: <code>float</code> - Crank angle range difference in radians.  
@@ -191,7 +191,7 @@ Crank angle range difference `α`.<br>Note: Always returning positive value.
 
 <a name="Crocker.alfa_abd"></a>
 ### Crocker.alfa_abd(a, b, d, ps0) ⇒ <code>float</code>
-Crank angle range difference `α`.<br>Note: Always returning positive value.
+Crank angle range difference `α`.<br>
 
 **Kind**: static method of <code>[Crocker](#Crocker)</code>  
 **Returns**: <code>float</code> - Crank angle range difference in radians.  
@@ -205,7 +205,7 @@ Crank angle range difference `α`.<br>Note: Always returning positive value.
 
 <a name="Crocker.alfa_acd"></a>
 ### Crocker.alfa_acd(a, b, d, ps0) ⇒ <code>float</code>
-Crank angle range difference `α`.<br>Note: Newton/Raphson numerical approximation.
+Crank angle range difference `α`.<br>Note: Newton/Raphson numerical approximation.Bug: Currently false values sometimes .. to be fixed !!
 
 **Kind**: static method of <code>[Crocker](#Crocker)</code>  
 **Returns**: <code>float</code> - Crank angle range difference in radians.  

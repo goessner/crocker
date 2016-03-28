@@ -1,6 +1,6 @@
 {
   "name": "crocker",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "crocker - a Crank-Rocker design and analysis library",
   "keywords": [
     "crank-rocker",
@@ -12,7 +12,9 @@
     "4R",
     "analysis",
     "synthesis",
-    "design"
+    "design",
+    "javascript",
+    "canvas"
   ],
   "main": "crocker.js",
   "scripts": {

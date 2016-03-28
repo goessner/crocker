@@ -6,7 +6,7 @@ as special planar fourbar mechanisms. <code>Crocker.js</code> is tiny, it weight
 <code>Crocker</code> is *not* meant to simulate mechanisms. For this and general fourbar mechanisms see [fourbar](https://github.com/goessner/fourbar).
 
 Here is a *Crank-Rocker* [animation](https://goessner.github.io/morphr/examples/complex.html) using the tiny
-[Morphr]((https://goessner.github.io/morphr) javascript class.
+[Morphr](https://goessner.github.io/morphr) javascript class.
 
 
 ## Geometry

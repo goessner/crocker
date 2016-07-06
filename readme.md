@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/dt/crocker.svg)](https://www.npmjs.com/package/crocker)
 [![no dependencies](https://img.shields.io/gemnasium/mathiasbynens/he.svg)](https://github.com/goessner/crocker)
 
-# Crank-Rocker
+# Crank-Rocker -- A powerful Library for Design and Analysis with HTML and `node.js`.
 
 <code>Crocker</code> is a javascript namespace and function library, which has proven successful in designing and analyzing Crank-Rockers 
 as special planar fourbar mechanisms in my lectures. <code>Crocker.js</code> is tiny, it weights only 1.5 kB compressed and gzipped.
@@ -187,12 +187,12 @@ Here is a [graphics example](https://goessner.github.io/crocker/Examples/crocker
 <a name="fn3">[3]</a> J.J. Uicker: [Theory of Machines and Mechanisms](http://www.amazon.co.uk/Theory-Machines-Mechanisms-Joseph-Uicker/dp/0195371232)
 
 ## GitCDN
-Use the link [https://gitcdn.xyz/repo/goessner/crocker/master/crocker.min.js](https://gitcdn.xyz/repo/goessner/crocker/master/v2.min.js)
+Use the link [https://gitcdn.xyz/repo/goessner/crocker/master/crocker.min.js](https://gitcdn.xyz/repo/goessner/crocker/master/crocker.min.js)
 for getting the latest commit as a raw file.
 
 In HTML use ...
 ```html
-<script src="https://gitcdn.xyz/repo/goessner/v2/master/v2.min.js"></script>
+<script src="https://gitcdn.xyz/repo/goessner/crocker/master/crocker.min.js"></script>
 ```
 
 # License
@@ -206,6 +206,12 @@ See the [API Reference](./api.md) for details.
 #Change Log
 
 All notable changes to this project will be documented here. This project adheres to Semantic Versioning.
+
+## 0.8.6 - 2016-07-06
+### Added
+
+*   *GitCDN* link.
+*   *NPM* links.
 
 ## 0.8.0 - 2016-03-25
 

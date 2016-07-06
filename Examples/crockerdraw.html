@@ -4,15 +4,15 @@
   <meta charset='utf-8'>
   <title>Crank-Rocker</title>
   <style> canvas { border: 1px solid #000; } </style>
-  <script src='../../g2/dist/g2.js'></script>
-  <script src='../../g2-mec/dist/g2.mec.js'></script>
-  <script src='../crocker.js'></script>
+  <script src="https://gitcdn.xyz/repo/goessner/g2/master/g2.min.js"></script>
+  <script src="https://gitcdn.xyz/repo/goessner/g2-mec/master/g2.mec.min.js"></script>
+  <script src="https://gitcdn.xyz/repo/goessner/crocker/master/crocker.min.js"></script>
 </head>
 
 <body>
   <h1>Draw Crank-Rocker</h1>
   <div id="app">
-    <canvas id="c" width="750", height="250"></canvas><br>
+    <canvas id="c" width="650", height="250"></canvas><br>
   </div>
   <script>
 function sqr(x) { return x*x; }
@@ -21,9 +21,8 @@ var app = {
    outerExtremePosition: function(g) {
       var phimin = Crocker.phiMin(this.a,this.b,this.c,this.d),
           psimin = Crocker.psiMin(this.a,this.b,this.c,this.d);
-      return g.cartesian()
-              .bar({x:0,y:0},{x:(this.a+this.b)*Math.cos(phimin),y:(this.a+this.b)*Math.sin(phimin)})
-              .bar({x:this.d,y:0},{x:this.c*Math.cos(psimin),y:this.c*Math.sin(psimin)})
+      return g.bar({x:0,y:0},{r:this.a+this.b,w:phimin})
+              .bar({x:this.d,y:0},{r:this.c,w:psimin})
               .use("nod",{x:this.a*Math.cos(phimin),y:this.a*Math.sin(phimin)})
               .use("nod",{x:this.d+this.c*Math.cos(psimin),y:this.c*Math.sin(psimin)})
               .use("nodfix",{x:0,y:0})
@@ -34,8 +33,8 @@ var app = {
       var phimax = Crocker.phiMax(this.a,this.b,this.c,this.d),
           psimax = Crocker.psiMax(this.a,this.b,this.c,this.d);
       return g.cartesian()
-              .bar({x:this.a*Math.cos(phimax),y:this.a*Math.sin(phimax)},{x:-this.b*Math.cos(phimax),y:-this.b*Math.sin(phimax)})
-              .bar({x:this.d,y:0},{x:this.c*Math.cos(psimax),y:this.c*Math.sin(psimax)})
+              .bar({x:this.a*Math.cos(phimax),y:this.a*Math.sin(phimax)},{r:this.b,w:phimax-Math.PI})
+              .bar({x:this.d,y:0},{r:this.c,w:psimax})
               .use("nod",{x:this.a*Math.cos(phimax),y:this.a*Math.sin(phimax)})
               .use("nod",{x:this.d+this.c*Math.cos(psimax),y:this.c*Math.sin(psimax)})
               .use("nodfix",{x:0,y:0})
@@ -47,8 +46,8 @@ var app = {
           psiI = Math.acos((-sqr(this.c)-sqr(this.d-this.a)+sqr(this.b))/(2*this.c*(this.d-this.a)));
       return g.cartesian()
               .bar({x:0,y:0},{x:this.a,y:0})
-              .bar({x:this.a,y:0},{x:this.b*Math.cos(phiI),y:this.b*Math.sin(phiI)})
-              .bar({x:this.d,y:0},{x:this.c*Math.cos(psiI),y:this.c*Math.sin(psiI)})
+              .bar({x:this.a,y:0},{r:this.b,w:phiI})
+              .bar({x:this.d,y:0},{r:this.c,w:psiI})
               .use("nod",{x:this.a,y:0})
               .use("nod",{x:this.d+this.c*Math.cos(psiI),y:this.c*Math.sin(psiI)})
               .use("nodfix",{x:0,y:0})
@@ -60,8 +59,8 @@ var app = {
           psiO = Math.acos((-sqr(this.c)-sqr(this.d+this.a)+sqr(this.b))/(2*this.c*(this.d+this.a)));
       return g.cartesian()
               .bar({x:0,y:0},{x:-this.a,y:0})
-              .bar({x:-this.a,y:0},{x:this.b*Math.cos(phiO),y:this.b*Math.sin(phiO)})
-              .bar({x:this.d,y:0},{x:this.c*Math.cos(psiO),y:this.c*Math.sin(psiO)})
+              .bar({x:-this.a,y:0},{r:this.b,w:phiO})
+              .bar({x:this.d,y:0},{r:this.c,w:psiO})
               .use("nod",{x:-this.a,y:0})
               .use("nod",{x:this.d+this.c*Math.cos(psiO),y:this.c*Math.sin(psiO)})
               .use("nodfix",{x:0,y:0})

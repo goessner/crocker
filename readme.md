@@ -1,7 +1,12 @@
+[![License](http://img.shields.io/:license-mit-blue.svg)](https://github.com/goessner/g2/license.txt)
+[![npm](https://img.shields.io/npm/v/crocker.svg)](https://www.npmjs.com/package/crocker/)
+[![npm](https://img.shields.io/npm/dt/crocker.svg)](https://www.npmjs.com/package/crocker)
+[![no dependencies](https://img.shields.io/gemnasium/mathiasbynens/he.svg)](https://github.com/goessner/crocker)
+
 # Crank-Rocker
 
 <code>Crocker</code> is a javascript namespace and function library, which has proven successful in designing and analyzing Crank-Rockers 
-as special planar fourbar mechanisms. <code>Crocker.js</code> is tiny, it weights only 1.5 kB compressed and gzipped.
+as special planar fourbar mechanisms in my lectures. <code>Crocker.js</code> is tiny, it weights only 1.5 kB compressed and gzipped.
 
 <code>Crocker</code> is *not* meant to simulate mechanisms. For this and general fourbar mechanisms see [fourbar](https://github.com/goessner/fourbar).
 
@@ -181,6 +186,18 @@ Here is a [graphics example](https://goessner.github.io/crocker/Examples/crocker
 
 <a name="fn3">[3]</a> J.J. Uicker: [Theory of Machines and Mechanisms](http://www.amazon.co.uk/Theory-Machines-Mechanisms-Joseph-Uicker/dp/0195371232)
 
+## GitCDN
+Use the link [https://gitcdn.xyz/repo/goessner/crocker/master/crocker.min.js](https://gitcdn.xyz/repo/goessner/crocker/master/v2.min.js)
+for getting the latest commit as a raw file.
+
+In HTML use ...
+```html
+<script src="https://gitcdn.xyz/repo/goessner/v2/master/v2.min.js"></script>
+```
+
+# License
+
+`crocker.js` is licensed under the terms of the MIT License. See LICENSE-MIT for details.
 
 ## API Reference
 See the [API Reference](./api.md) for details.

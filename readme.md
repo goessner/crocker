@@ -3,7 +3,7 @@
 [![npm](https://img.shields.io/npm/dt/crocker.svg)](https://www.npmjs.com/package/crocker)
 [![no dependencies](https://img.shields.io/gemnasium/mathiasbynens/he.svg)](https://github.com/goessner/crocker)
 
-# Crank-Rocker --Design and Analysis.
+# Crank-Rocker -- Design and Analysis.
 
 <code>Crocker</code> is a javascript namespace and function library, which has proven successful in designing and analyzing Crank-Rockers 
 as special planar fourbar mechanisms in my lectures. <code>Crocker.js</code> is tiny, it weights only 1.5 kB compressed and gzipped.
